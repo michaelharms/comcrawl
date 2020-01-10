@@ -15,11 +15,11 @@ def download_single_result(result: Dict) -> str:
         headers={"Range": f"bytes={offset}-{offset_end}"}
     )
 
-    raw_data = io.BytesIO(response.content)
-    f = gzip.GzipFile(fileobj=raw_data)
+    zipped_file = io.BytesIO(response.content)
+    unzipped_file = gzip.GzipFile(fileobj=zipped_file)
 
-    data = f.read()
-    data = data.decode("utf-8")
+    raw_data: bytes = unzipped_file.read()
+    data: str = raw_data.decode("utf-8")
 
     html = ""
 

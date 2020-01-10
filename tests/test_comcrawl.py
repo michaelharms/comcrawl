@@ -21,3 +21,5 @@ def test_comcrawl():
 
     results["html"] = cc.download(results)
     print(results["html"])
+
+    assert results.loc[0, "html"][:15] == "<!DOCTYPE html>"
