@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7"
+
+      - name: Install poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+      - name: Install Shellcheck
+        run: sudo apt-get install shellcheck
+
+      - name: Install Dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install
+
+      - name: Lint
+        run: |
+          source $HOME/.poetry/env
+          sh tasks/lint.sh
+
+      - name: Test
+        run: |
+          source $HOME/.poetry/env
+          sh tasks/test.sh
+
+      - name: Report Coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
