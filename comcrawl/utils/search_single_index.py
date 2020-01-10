@@ -5,7 +5,7 @@ import requests
 search_url_template = "https://index.commoncrawl.org/CC-MAIN-{index}-index?url={url}&output=json"
 
 
-def search_index(index: str, url: str) -> List[Dict]:
+def search_single_index(index: str, url: str) -> List[Dict]:
     """Searches single Common Crawl index for given URL pattern.
 
     Args:

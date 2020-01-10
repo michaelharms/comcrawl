@@ -1,3 +1,4 @@
 __version__ = "0.1.0"
 
-from .search import search
+from .api import search
+from .api import download
