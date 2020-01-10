@@ -33,10 +33,14 @@ jobs:
           poetry install
 
       - name: Lint
-        run: sh tasks/lint.sh
+        run: |
+          source $HOME/.poetry/env
+          sh tasks/lint.sh
 
       - name: Test
-        run: sh tasks/test.sh
+        run: |
+          source $HOME/.poetry/env
+          sh tasks/test.sh
 
       - name: Report Coverage
         uses: codecov/codecov-action@v1
