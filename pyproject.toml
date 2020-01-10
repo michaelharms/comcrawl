@@ -6,6 +6,7 @@ authors = ["Michael Harms <michaelharms95@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+requests = "^2.22.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
