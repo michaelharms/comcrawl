@@ -2,7 +2,7 @@ from typing import List, Dict
 import json
 import requests
 
-search_url_template = "https://index.commoncrawl.org/CC-MAIN-{index}-index?url={url}&output=json"
+SEARCH_URL_TEMPLATE = "https://index.commoncrawl.org/CC-MAIN-{index}-index?url={url}&output=json"
 
 
 def search_single_index(index: str, url: str) -> List[Dict]:
@@ -19,7 +19,7 @@ def search_single_index(index: str, url: str) -> List[Dict]:
 
     results = []
 
-    search_url = search_url_template.format(index=index, url=url)
+    search_url = SEARCH_URL_TEMPLATE.format(index=index, url=url)
     response = requests.get(search_url)
 
     if response.status_code == 200:

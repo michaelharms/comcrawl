@@ -4,13 +4,13 @@ import pandas as pd
 from ..utils import search_single_index
 
 
-default_indexes = open("comcrawl/config/default_indexes.txt", "r").read().split("\n")
+DEFAULT_INDEXES = open("comcrawl/config/default_indexes.txt", "r").read().split("\n")
 
 
 def search(
-    url: str,
-    indexes: List[str] = default_indexes,
-    threads: int = None
+        url: str,
+        indexes: List[str] = DEFAULT_INDEXES,
+        threads: int = None
 ) -> List[Dict[str, Dict]]:
     """Searches multiple Common Crawl indices for URL pattern.
 

@@ -1,5 +1,4 @@
 import comcrawl as cc
-from pprint import pprint
 
 
 def test_comcrawl():
@@ -21,4 +20,4 @@ def test_comcrawl():
     print(results)
 
     results["html"] = cc.download(results)
-    pprint(results["html"])
+    print(results["html"])
