@@ -2,7 +2,7 @@
 name = "comcrawl"
 version = "0.1.0"
 description = ""
-authors = ["Michael Harms <michaelharms.hsel@yahoo.de>"]
+authors = ["Michael Harms <michaelharms95@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
