@@ -23,12 +23,13 @@ jobs:
 
       - name: Install poetry
         run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+        run: export $PATH="$HOME/.poetry/bin:$PATH"
 
       - name: Install Shellcheck
         run: sudo apt-get install shellcheck
 
-      - name: Install Dev Dependencies
-        run: poetry install --dev
+      - name: Install Dependencies
+        run: poetry install
 
       - name: Lint
         run: sh tasks/lint.sh
