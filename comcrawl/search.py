@@ -8,7 +8,7 @@ def search(
     indices: List[str],
     threads: int = None
 ) -> List[Dict[str, Dict]]:
-    """Searches multiple Common Crawl index for URL pattern.
+    """Searches multiple Common Crawl indices for URL pattern.
 
     Args:
         url: The URL pattern to search for.
