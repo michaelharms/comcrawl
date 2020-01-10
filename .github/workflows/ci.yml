@@ -24,7 +24,7 @@ jobs:
       - name: Install poetry
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-          export $PATH="$HOME/.poetry/bin:$PATH"
+          source $HOME/.poetry/env
 
       - name: Install Shellcheck
         run: sudo apt-get install shellcheck
