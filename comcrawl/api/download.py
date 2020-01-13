@@ -3,14 +3,14 @@ from ..utils import download_single_result
 
 
 def download(results: DataFrame) -> Series:
-    """Downloads the HTML for each Common Crawl search result in 
+    """Downloads the HTML for each Common Crawl search result in
     a given Pandas DataFrame format.
 
     Args:
         results: Pandas DataFrame with search results.
 
     Returns:
-        Pandas Series with HTML corresponding to each result 
+        Pandas Series with HTML corresponding to each result
         in the input.
 
     """
