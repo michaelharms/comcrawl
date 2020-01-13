@@ -23,6 +23,8 @@ def search_single_index(index: str, url: str) -> List[Dict]:
     response = requests.get(search_url)
 
     if response.status_code == 200:
-        results = [json.loads(result) for result in response.content.splitlines()]
+        results = [
+            json.loads(result) for result in response.content.splitlines()
+        ]
 
     return results

@@ -5,6 +5,17 @@ import requests
 
 
 def download_single_result(result: Dict) -> str:
+    """Downloads HTML for single search result.
+
+    Args:
+        result: Common Crawl index search result from the search function.
+
+
+    Returns:
+        The HTML of the corresponding page as a string.
+
+    """
+
     offset, length = int(result["offset"]), int(result["length"])
 
     offset_end = offset + length - 1
