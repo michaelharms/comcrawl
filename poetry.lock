@@ -102,6 +102,19 @@ toml = ["toml"]
 
 [[package]]
 category = "dev"
+description = "A fast native implementation of diff algorithm with a pure python fallback"
+name = "fastdiff"
+optional = false
+python-versions = "*"
+version = "0.2.0"
+
+[package.dependencies]
+[package.dependencies.wasmer]
+python = ">=3.5"
+version = ">=0.3.0"
+
+[[package]]
+category = "dev"
 description = "Git Object Database"
 name = "gitdb2"
 optional = false
@@ -409,6 +422,24 @@ version = "2.0.5"
 
 [[package]]
 category = "dev"
+description = "Snapshot Testing utils for Python"
+name = "snapshottest"
+optional = false
+python-versions = "*"
+version = "0.5.1"
+
+[package.dependencies]
+fastdiff = ">=0.1.4"
+six = ">=1.10.0"
+termcolor = "*"
+
+[package.extras]
+nose = ["nose"]
+pytest = ["pytest"]
+test = ["six", "pytest (>=3.1.0)", "pytest-cov", "nose", "django (>=1.10.6)"]
+
+[[package]]
+category = "dev"
 description = "Manage dynamic plugins for Python applications"
 name = "stevedore"
 optional = false
@@ -418,6 +449,14 @@ version = "1.31.0"
 [package.dependencies]
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 six = ">=1.10.0"
+
+[[package]]
+category = "dev"
+description = "ANSII Color formatting for output in terminal."
+name = "termcolor"
+optional = false
+python-versions = "*"
+version = "1.1.0"
 
 [[package]]
 category = "dev"
@@ -447,6 +486,15 @@ version = "1.25.7"
 brotli = ["brotlipy (>=0.6.0)"]
 secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
+
+[[package]]
+category = "dev"
+description = "Python extension to run WebAssembly binaries"
+marker = "python_version >= \"3.5\" and platform_machine == \"x86_64\" and sys_platform == \"darwin\" or python_version >= \"3.5\" and platform_machine == \"x86_64\" and sys_platform == \"linux\""
+name = "wasmer"
+optional = false
+python-versions = "*"
+version = "0.3.0"
 
 [[package]]
 category = "dev"
@@ -481,7 +529,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "b01600ca1e8daac274043daedf3d6a55567c32b7a6eb75ddd514b594a78197e7"
+content-hash = "c4020167726edd725e9b5634aa677f22f637127f20acedca34d407316b10aa78"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -548,6 +596,9 @@ coverage = [
     {file = "coverage-5.0.2-cp39-cp39m-win32.whl", hash = "sha256:d095a7b473f8a95f7efe821f92058c8a2ecfb18f8db6677ae3819e15dc11aaae"},
     {file = "coverage-5.0.2-cp39-cp39m-win_amd64.whl", hash = "sha256:ddeb42a3d5419434742bf4cc71c9eaa22df3b76808e23a82bd0b0bd360f1a9f1"},
     {file = "coverage-5.0.2.tar.gz", hash = "sha256:b251c7092cbb6d789d62dc9c9e7c4fb448c9138b51285c36aeb72462cad3600e"},
+]
+fastdiff = [
+    {file = "fastdiff-0.2.0.tar.gz", hash = "sha256:623ad3d9055ab78e014d0d10767cb033d98d5d4f66052abf498350c8e42e29aa"},
 ]
 gitdb2 = [
     {file = "gitdb2-2.0.6-py2.py3-none-any.whl", hash = "sha256:96bbb507d765a7f51eb802554a9cfe194a174582f772e0d89f4e87288c288b7b"},
@@ -733,9 +784,15 @@ smmap2 = [
     {file = "smmap2-2.0.5-py2.py3-none-any.whl", hash = "sha256:0555a7bf4df71d1ef4218e4807bbf9b201f910174e6e08af2e138d4e517b4dde"},
     {file = "smmap2-2.0.5.tar.gz", hash = "sha256:29a9ffa0497e7f2be94ca0ed1ca1aa3cd4cf25a1f6b4f5f87f74b46ed91d609a"},
 ]
+snapshottest = [
+    {file = "snapshottest-0.5.1.tar.gz", hash = "sha256:2cc7157e77674ea8ebeb2351466ff50cd4b5ad8e213adc06df9c16a75ab5bafc"},
+]
 stevedore = [
     {file = "stevedore-1.31.0-py2.py3-none-any.whl", hash = "sha256:01d9f4beecf0fbd070ddb18e5efb10567801ba7ef3ddab0074f54e3cd4e91730"},
     {file = "stevedore-1.31.0.tar.gz", hash = "sha256:e0739f9739a681c7a1fda76a102b65295e96a144ccdb552f2ae03c5f0abe8a14"},
+]
+termcolor = [
+    {file = "termcolor-1.1.0.tar.gz", hash = "sha256:1d6d69ce66211143803fbc56652b41d73b4a400a2891d7bf7a1cdf4c02de613b"},
 ]
 typed-ast = [
     {file = "typed_ast-1.4.0-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:262c247a82d005e43b5b7f69aff746370538e176131c32dda9cb0f324d27141e"},
@@ -767,6 +824,15 @@ typing-extensions = [
 urllib3 = [
     {file = "urllib3-1.25.7-py2.py3-none-any.whl", hash = "sha256:a8a318824cc77d1fd4b2bec2ded92646630d7fe8619497b142c84a9e6f5a7293"},
     {file = "urllib3-1.25.7.tar.gz", hash = "sha256:f3c5fd51747d450d4dcf6f923c81f78f811aab8205fda64b0aba34a4e48b0745"},
+]
+wasmer = [
+    {file = "wasmer-0.3.0-cp35-cp35m-macosx_10_7_x86_64.whl", hash = "sha256:75d854cb5acdc32f289ceb310a72d66190fa531dd126eac970ed6788939a5d40"},
+    {file = "wasmer-0.3.0-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:7b5235dd4ee1cf48d054e7216a1fefe15b8b1a48ffe5e9bb2655724cf84d7a31"},
+    {file = "wasmer-0.3.0-cp36-cp36m-macosx_10_7_x86_64.whl", hash = "sha256:4fe592b764fc09d535757682d0ced6da1037976a7eb97986fce3523779a89682"},
+    {file = "wasmer-0.3.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:e547b1074e52c10f0581de415b509aa61e577f5248340a68b356938393d773c8"},
+    {file = "wasmer-0.3.0-cp37-cp37m-macosx_10_7_x86_64.whl", hash = "sha256:2edb87608daa3b46bd2520e0b5b90580fde9c805be4d92eeb98c22b29a21abc6"},
+    {file = "wasmer-0.3.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:fcfe2c7a9fbf323f3520ef9766b82e80cd433d7f8c87ff084b18bcde716923af"},
+    {file = "wasmer-0.3.0-py3-none-any.whl", hash = "sha256:1d2c337425721fd9ac6c6b17698ef8a9795b236a38b0e3c85872a5845ffb0d90"},
 ]
 wcwidth = [
     {file = "wcwidth-0.1.8-py2.py3-none-any.whl", hash = "sha256:8fd29383f539be45b20bd4df0dc29c20ba48654a41e661925e612311e9f3c603"},
