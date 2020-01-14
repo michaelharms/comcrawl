@@ -8,10 +8,10 @@ echo "poetry check"
 poetry check
 
 echo "pylint"
-poetry run pylint comcrawl tests || FAILURE=true
+poetry run pylint --ignore=snapshots comcrawl tests || FAILURE=true
 
 echo "pycodestyle"
-poetry run pycodestyle comcrawl tests || FAILURE=true
+poetry run pycodestyle --exclude=snapshots comcrawl tests || FAILURE=true
 
 echo "mypy"
 poetry run mypy comcrawl tests || FAILURE=true
