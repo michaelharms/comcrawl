@@ -1,4 +1,4 @@
-from comcrawl.utils import download_single_result
+from comcrawl.utils import _download_single_result
 
 
 KNOWN_RESULT = {
@@ -18,5 +18,5 @@ KNOWN_RESULT = {
 
 
 def test_download_single_result(snapshot):
-    html = download_single_result(KNOWN_RESULT)
+    html = _download_single_result(KNOWN_RESULT)
     snapshot.assert_match(html)

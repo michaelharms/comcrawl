@@ -1,2 +1,2 @@
-from .search_single_index import search_single_index
-from .download_single_result import download_single_result
+from ._search_single_index import _search_single_index
+from ._download_single_result import _download_single_result

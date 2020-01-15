@@ -4,7 +4,7 @@ import gzip
 import requests
 
 
-def download_single_result(result: Dict) -> str:
+def _download_single_result(result: Dict) -> str:
     """Downloads HTML for single search result.
 
     Args:

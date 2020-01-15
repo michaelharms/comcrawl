@@ -2,10 +2,12 @@ from typing import List, Dict
 import json
 import requests
 
-SEARCH_URL_TEMPLATE = "https://index.commoncrawl.org/CC-MAIN-{index}-index?url={url}&output=json"
+SEARCH_URL_TEMPLATE = ("https://index.commoncrawl.org/CC-MAIN-"
+                       "{index}-index?url={url}&output=json")
 
 
-def search_single_index(index: str, url: str) -> List[Dict]:
+def _search_single_index(index: str,
+                         url: str) -> List[Dict]:
     """Searches single Common Crawl index for given URL pattern.
 
     Args:
