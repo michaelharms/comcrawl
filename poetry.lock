@@ -529,8 +529,8 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["pathlib2", "contextlib2", "unittest2"]
 
 [metadata]
-content-hash = "c4020167726edd725e9b5634aa677f22f637127f20acedca34d407316b10aa78"
-python-versions = "^3.7"
+content-hash = "ee8945e72be51ef3eece93a336eeb9d4b67540edc74200ffc69dcf64131c392f"
+python-versions = "^3.6"
 
 [metadata.files]
 astroid = [
