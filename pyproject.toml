@@ -1,11 +1,31 @@
 [tool.poetry]
 name = "comcrawl"
 version = "0.1.0"
-description = ""
+description = "A python package for easily querying and downloading pages from commoncrawl.org"
 authors = ["Michael Harms <michaelharms95@icloud.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/michaelharms/comcrawl"
+repository = "https://github.com/michaelharms/comcrawl"
+keywords = ["commoncrawl", "machine-learning", "nlp", "data", "common-crawl", "scraping", "deep-learning", "training-dataset"]
+classifiers = [
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3.6",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed"
+]
+include = [
+  "LICENSE",
+]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.6"
 requests = "^2.22.0"
 pandas = "^0.25.3"
 

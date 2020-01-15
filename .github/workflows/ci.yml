@@ -9,8 +9,7 @@ on:
       - master
 
 jobs:
-  build:
-    name: Lint & Test
+  lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,13 +18,20 @@ jobs:
       - name: Python Setup
         uses: actions/setup-python@v1
         with:
-          python-version: "3.7"
+          python-version: "3.x"
 
       - name: Install poetry
         run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
       - name: Install Shellcheck
         run: sudo apt-get install shellcheck
+
+      - name: Use Python Dependency Cache
+        uses: actions/cache@v1.0.3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
 
       - name: Install Dependencies
         run: |
@@ -36,6 +42,39 @@ jobs:
         run: |
           source $HOME/.poetry/env
           sh tasks/lint.sh
+
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+      - name: Install Shellcheck
+        run: sudo apt-get install shellcheck
+
+      - name: Use Python Dependency Cache
+        uses: actions/cache@v1.0.3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          restore-keys: ${{ runner.os }}-poetry-
+
+      - name: Install Dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install
 
       - name: Test
         run: |
