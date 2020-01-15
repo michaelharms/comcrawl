@@ -43,15 +43,15 @@ method-rgx=[a-z_][a-z0-9_]{2,70}$
 [FORMAT]
 
 # Maximum number of characters on a single line.
-max-line-length = 100
+max-line-length = 79
 
 [DESIGN]
 # Minimum number of public methods for a class (see R0903).
 min-public-methods = 0
 
 # Maximum number of attributes for a class (see R0902).
-max-attributes = 15
+max-attributes = 10
 
-max-locals = 25
+max-locals = 20
 
 max-args = 10
