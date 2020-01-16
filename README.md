@@ -1,6 +1,6 @@
 # comcrawl
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/michaelharms/comcrawl/CI)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/michaelharms/comcrawl/CI-CD)
 [![codecov](https://codecov.io/gh/michaelharms/comcrawl/branch/master/graph/badge.svg?token=FEw4KEcpRm)](https://codecov.io/gh/michaelharms/comcrawl)
 ![GitHub](https://img.shields.io/github/license/michaelharms/comcrawl)
 
