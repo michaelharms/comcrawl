@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  release:
+    types: [prereleased, published]
+
+jobs:
+  deploy:
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.x"
+
+      - name: Install Poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+      - name: Install Dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install --no-dev
+
+      - name: Build
+        run: |
+          source $HOME/.poetry/env
+          poetry build
+
+      - name: Publish to Test PyPI
+        if: github.event == 'prereleased'
+        run: |
+          source $HOME/.poetry/env
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry publish -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }} -r testpypi
+
+      - name: Publish to PyPI
+        if: github.event == 'published'
+        run: |
+          source $HOME/.poetry/env
+          poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
