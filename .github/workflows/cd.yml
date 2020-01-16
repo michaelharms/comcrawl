@@ -1,8 +1,4 @@
-on:
-  release:
-    types: created
-
-name: Publish to Test PyPI
+on: push
 
 jobs:
   deploy:
@@ -31,9 +27,19 @@ jobs:
           source $HOME/.poetry/env
           poetry install --no-dev
 
-      - name: Build & Publish
+      - name: Build
+        run: |
+          source $HOME/.poetry/env
+          poetry build
+
+      - name: Publish to Test PyPI
         run: |
           source $HOME/.poetry/env
           poetry config repositories.testpypi https://test.pypi.org/legacy
-          poetry build 
           poetry publish -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }} -r testpypi
+
+      - name: Publish to PyPI
+        if: startsWith(github.event.ref, "refs/tags")
+        run: |
+          source $HOME/.poetry/env
+          poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
