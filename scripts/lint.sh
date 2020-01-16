@@ -20,7 +20,7 @@ echo "bandit"
 poetry run bandit -ll -r comcrawl tests || FAILURE=true
 
 echo "shellcheck"
-shellcheck tasks/*.sh || FAILURE=true
+shellcheck scripts/*.sh || FAILURE=true
 
 if [ "$FAILURE" = true ]; then
   echo "Linting failed"
