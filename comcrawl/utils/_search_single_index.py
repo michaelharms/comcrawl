@@ -1,6 +1,9 @@
 from typing import List, Dict
 import json
 import requests
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 SEARCH_URL_TEMPLATE = ("https://index.commoncrawl.org/CC-MAIN-"
                        "{index}-index?url={url}&output=json")
@@ -21,7 +24,7 @@ def _search_single_index(index: str,
 
     results = []
 
-    search_url = SEARCH_URL_TEMPLATE.format(index=index, url=url)
+    search_url = SEARCH_URL_TEMPLATE.format(index=index.replace("CC-MAIN-", ""), url=url)
     response = requests.get(search_url)
 
     if response.status_code == 200:

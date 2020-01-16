@@ -1,12 +1,10 @@
 from typing import List, Dict
 from concurrent import futures
 import pandas as pd
-from ..utils import _search_single_index
+from ..utils import _search_single_index, _fetch_available_indexes
 
 
-DEFAULT_INDEXES = (open("comcrawl/config/default_indexes.txt", "r")
-                   .read()
-                   .split("\n"))
+DEFAULT_INDEXES = _fetch_available_indexes()
 
 
 def search(url: str,
