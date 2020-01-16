@@ -19,3 +19,4 @@ https://www.python.org/dev/peps/pep-0484/
 https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
 https://johnfraney.ca/posts/2019/05/28/create-publish-python-package-poetry/#testpypi
 https://dan.yeaw.me/posts/github-actions-automate-your-python-development-workflow/
+https://github.com/python-poetry/poetry/issues/858#issuecomment-520239647
