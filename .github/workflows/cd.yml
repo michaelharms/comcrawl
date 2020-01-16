@@ -2,7 +2,7 @@ name: CD
 
 on:
   release:
-    types: [prereleased, published]
+    types: [published]
 
 jobs:
   deploy:
@@ -29,14 +29,14 @@ jobs:
           poetry build
 
       - name: Publish to Test PyPI
-        if: github.event == 'prereleased'
+        if: github.release.prerelease == true
         run: |
           source $HOME/.poetry/env
           poetry config repositories.testpypi https://test.pypi.org/legacy/
           poetry publish -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }} -r testpypi
 
       - name: Publish to PyPI
-        if: github.event == 'published'
+        if: github.release.prerelease == false
         run: |
           source $HOME/.poetry/env
           poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}

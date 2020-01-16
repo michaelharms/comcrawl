@@ -34,7 +34,7 @@ jobs:
       - name: Lint
         run: |
           source $HOME/.poetry/env
-          sh tasks/lint.sh
+          sh scripts/lint.sh
 
   test:
     needs: lint
@@ -65,7 +65,7 @@ jobs:
       - name: Test
         run: |
           source $HOME/.poetry/env
-          sh tasks/test.sh
+          sh scripts/test.sh
 
       - name: Report Coverage
         uses: codecov/codecov-action@v1
