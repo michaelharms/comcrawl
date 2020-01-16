@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 on:
   push:
@@ -25,13 +25,6 @@ jobs:
 
       - name: Install Shellcheck
         run: sudo apt-get install shellcheck
-
-      - name: Use Python Dependency Cache
-        uses: actions/cache@v1.0.3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: ${{ runner.os }}-poetry-
 
       - name: Install Dependencies
         run: |
@@ -64,13 +57,6 @@ jobs:
       - name: Install Shellcheck
         run: sudo apt-get install shellcheck
 
-      - name: Use Python Dependency Cache
-        uses: actions/cache@v1.0.3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
-          restore-keys: ${{ runner.os }}-poetry-
-
       - name: Install Dependencies
         run: |
           source $HOME/.poetry/env
@@ -85,3 +71,43 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  deploy:
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - lint
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Python Setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.x"
+
+      - name: Install poetry
+        run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+
+      - name: Install Dependencies
+        run: |
+          source $HOME/.poetry/env
+          poetry install --no-dev
+
+      - name: Build
+        run: |
+          source $HOME/.poetry/env
+          poetry build
+
+      - name: Publish to Test PyPI
+        run: |
+          source $HOME/.poetry/env
+          poetry config repositories.testpypi https://test.pypi.org/legacy/
+          poetry publish -u __token__ -p ${{ secrets.TEST_PYPI_TOKEN }} -r testpypi
+
+      - name: Publish to PyPI
+        if: startsWith(github.event.ref, 'refs/tags')
+        run: |
+          source $HOME/.poetry/env
+          poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
