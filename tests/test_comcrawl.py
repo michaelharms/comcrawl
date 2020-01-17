@@ -2,13 +2,13 @@ from comcrawl import IndexClient
 import pandas as pd
 
 
-def test_comcrawl(snapshot):
-    # all indexes
+def test_comcrawl_all_indexes(snapshot):
     ic = IndexClient()
 
     assert len(ic.indexes) > 1
 
-    # one index
+
+def test_comcrawl_single_index(snapshot):
     ic = IndexClient(["2019-51"])
 
     assert len(ic.indexes) == 1
