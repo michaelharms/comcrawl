@@ -1,0 +1,4 @@
+from ._download_multiple_results import _download_multiple_results
+from ._download_single_result import _download_single_result
+from ._search_single_index import _search_single_index
+from ._search_multiple_indexes import _search_multiple_indexes
