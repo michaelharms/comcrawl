@@ -2,17 +2,8 @@ import pandas as pd
 from comcrawl import IndexClient
 
 
-def test_comcrawl_all_indexes():
-    client = IndexClient()
-
-    assert len(client.indexes) > 1
-
-
-def test_comcrawl_single_index(snapshot):
+def test_comcrawl(snapshot):
     client = IndexClient(["2019-51"])
-
-    assert len(client.indexes) == 1
-
     client.search("https://index.commoncrawl.org/*")
 
     assert len(client.results) == 3

@@ -7,8 +7,11 @@ from snapshottest import Snapshot
 
 snapshots = Snapshot()
 
-snapshots['test_comcrawl_single_index 1'] = {
-    'charset': 'UTF-8', 'digest': '745JGUNVPWB4L3TWJIGUQRQFTFSREJ5J', 'filename': 'crawl-data/CC-MAIN-2019-51/segments/1575540500637.40/warc/CC-MAIN-20191207160050-20191207184050-00394.warc.gz', 'html': '''<!DOCTYPE html>
+snapshots['test_comcrawl 1'] = {
+    'charset': 'UTF-8',
+    'digest': '745JGUNVPWB4L3TWJIGUQRQFTFSREJ5J',
+    'filename': 'crawl-data/CC-MAIN-2019-51/segments/1575540500637.40/warc/CC-MAIN-20191207160050-20191207184050-00394.warc.gz',
+    'html': '''<!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="/static/__shared/shared.css"/>
@@ -720,4 +723,14 @@ Powered by <a href="https://github.com/webrecorder/pywb">pywb</a>
 </p>
 
 </body>
-</html>''', 'languages': 'eng', 'length': '3404', 'mime': 'text/html', 'mime-detected': 'text/html', 'offset': '68774745', 'status': '200', 'timestamp': '20191207172145', 'url': 'http://index.commoncrawl.org/', 'urlkey': 'org,commoncrawl,index)/'}
+</html>''',
+    'languages': 'eng',
+    'length': '3404',
+    'mime': 'text/html',
+    'mime-detected': 'text/html',
+    'offset': '68774745',
+    'status': '200',
+    'timestamp': '20191207172145',
+    'url': 'http://index.commoncrawl.org/',
+    'urlkey': 'org,commoncrawl,index)/'
+}
