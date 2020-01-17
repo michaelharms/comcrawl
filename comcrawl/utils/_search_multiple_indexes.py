@@ -1,28 +1,22 @@
-from typing import List, Dict
 from concurrent import futures
-import pandas as pd
-from ..utils import _search_single_index
+from ..types import ResultList, IndexList
+from ._search_single_index import _search_single_index
 
 
-DEFAULT_INDEXES = (open("comcrawl/config/default_indexes.txt", "r")
-                   .read()
-                   .split("\n"))
-
-
-def search(url: str,
-           indexes: List[str] = DEFAULT_INDEXES,
-           threads: int = None) -> List[Dict[str, Dict]]:
-    """Searches multiple Common Crawl indices for URL pattern.
+def _search_multiple_indexes(url: str,
+                             indexes: IndexList,
+                             threads: int = None) -> ResultList:
+    """Searches multiple Common Crawl Indexes for URL pattern.
 
     Args:
         url: The URL pattern to search for.
-        indices: List of Common Crawl indices to search in.
-        threads: Number of threads to use for faster search on
+        indexes: List of Common Crawl Indexes to search through.
+        threads: Number of threads to use for faster parallel search on
         multiple threads.
 
     Returns:
         List of all results found throughout the specified
-        Common Crawl indices.
+        Common Crawl indexes.
 
     """
 
@@ -48,4 +42,4 @@ def search(url: str,
             index_results = _search_single_index(index, url)
             results.extend(index_results)
 
-    return pd.DataFrame(results)
+    return results

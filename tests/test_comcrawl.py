@@ -1,16 +1,31 @@
-import comcrawl as cc
+import pandas as pd
+from comcrawl import IndexClient
 
 
-def test_comcrawl(snapshot):
-    results = cc.search("https://index.commoncrawl.org/*", indexes=["2019-51"])
+def test_comcrawl_all_indexes():
+    client = IndexClient()
 
-    assert results.shape == (3, 12)
+    assert len(client.indexes) > 1
 
-    results = results.sort_values(by="timestamp")
-    results = results.drop_duplicates("urlkey", keep="last")
 
-    assert results.shape == (2, 12)
+def test_comcrawl_single_index(snapshot):
+    client = IndexClient(["2019-51"])
 
-    results["html"] = cc.download(results)
+    assert len(client.indexes) == 1
 
-    snapshot.assert_match(results.loc[0, :].to_dict())
+    client.search("https://index.commoncrawl.org/*")
+
+    assert len(client.results) == 3
+
+    # filter out duplicates with pandas
+    results_df = pd.DataFrame(client.results)
+    sorted_results_df = results_df.sort_values(by="timestamp")
+    filtered_results_df = (sorted_results_df
+                           .drop_duplicates("urlkey", keep="last"))
+    client.results = filtered_results_df.to_dict("records")
+
+    assert len(client.results) == 2
+
+    client.download_pages()
+
+    snapshot.assert_match(client.results[1])

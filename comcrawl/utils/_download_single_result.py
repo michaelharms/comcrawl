@@ -1,15 +1,17 @@
-from typing import Dict
 import io
 import gzip
 import requests
+from ..types import Result, HTMLStr
 
 
-def _download_single_result(result: Dict) -> str:
+URL_TEMPLATE = "https://commoncrawl.s3.amazonaws.com/{filename}"
+
+
+def _download_single_result(result: Result) -> HTMLStr:
     """Downloads HTML for single search result.
 
     Args:
-        result: Common Crawl index search result from the search function.
-
+        result: Common Crawl Index search result from the search function.
 
     Returns:
         The HTML of the corresponding page as a string.
@@ -20,11 +22,12 @@ def _download_single_result(result: Dict) -> str:
 
     offset_end = offset + length - 1
 
-    prefix = "https://commoncrawl.s3.amazonaws.com"
-    response = requests.get(
-        f"{prefix}/{result['filename']}",
-        headers={"Range": f"bytes={offset}-{offset_end}"}
-    )
+    url = URL_TEMPLATE.format(filename=result["filename"])
+    response = (requests
+                .get(
+                    url,
+                    headers={"Range": f"bytes={offset}-{offset_end}"}
+                ))
 
     zipped_file = io.BytesIO(response.content)
     unzipped_file = gzip.GzipFile(fileobj=zipped_file)
@@ -35,6 +38,6 @@ def _download_single_result(result: Dict) -> str:
     html = ""
 
     if len(data) > 0:
-        _, _, html = data.strip().split("\r\n\r\n", 2)
+        __, ___, html = data.strip().split("\r\n\r\n", 2)
 
     return html

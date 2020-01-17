@@ -1,6 +1,5 @@
 from comcrawl.utils import _download_single_result
 
-
 KNOWN_RESULT = {
     'urlkey': 'org,commoncrawl,index)/',
     'timestamp': '20191207172145',
