@@ -1,4 +1,3 @@
-from typing import Dict
 import io
 import gzip
 import requests
@@ -24,7 +23,11 @@ def _download_single_result(result: Result) -> HTMLStr:
     offset_end = offset + length - 1
 
     url = URL_TEMPLATE.format(filename=result["filename"])
-    response = requests.get(url, headers={"Range": f"bytes={offset}-{offset_end}"})
+    response = (requests
+                .get(
+                    url,
+                    headers={"Range": f"bytes={offset}-{offset_end}"}
+                ))
 
     zipped_file = io.BytesIO(response.content)
     unzipped_file = gzip.GzipFile(fileobj=zipped_file)
@@ -35,6 +38,6 @@ def _download_single_result(result: Result) -> HTMLStr:
     html = ""
 
     if len(data) > 0:
-        __, __, html = data.strip().split("\r\n\r\n", 2)
+        __, ___, html = data.strip().split("\r\n\r\n", 2)
 
     return html

@@ -1,9 +1,9 @@
-from typing import List, Dict
 import json
 import requests
 from ..types import ResultList
 
-URL_TEMPLATE = "https://index.commoncrawl.org/CC-MAIN-{index}-index?url={url}&output=json"
+URL_TEMPLATE = ("https://index.commoncrawl.org/"
+                "CC-MAIN-{index}-index?url={url}&output=json")
 
 
 def _search_single_index(index: str, url: str) -> ResultList:
@@ -24,6 +24,8 @@ def _search_single_index(index: str, url: str) -> ResultList:
     response = requests.get(url)
 
     if response.status_code == 200:
-        results = [json.loads(result) for result in response.content.splitlines()]
+        results = [
+            json.loads(result) for result in response.content.splitlines()
+        ]
 
     return results

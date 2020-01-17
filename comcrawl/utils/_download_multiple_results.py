@@ -1,4 +1,4 @@
-from ..types import ResultList, HTMLStrList
+from ..types import ResultList
 from ._download_single_result import _download_single_result
 
 

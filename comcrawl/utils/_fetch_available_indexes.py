@@ -10,7 +10,9 @@ def _fetch_available_indexes() -> IndexList:
 
     """
 
-    index_list = requests.get("https://index.commoncrawl.org/collinfo.json").json()
+    index_list = (requests
+                  .get("https://index.commoncrawl.org/collinfo.json")
+                  .json())
 
     # other functions don't expect this prefix
     indexes = [index["id"].replace("CC-MAIN-", "") for index in index_list]

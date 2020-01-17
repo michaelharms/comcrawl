@@ -1,19 +1,22 @@
-from typing import List, Dict
 from concurrent import futures
 from ..types import ResultList, IndexList
 from ._search_single_index import _search_single_index
 
 
-def _search_multiple_indexes(url: str, indexes: IndexList, threads: int = None) -> ResultList:
+def _search_multiple_indexes(url: str,
+                             indexes: IndexList,
+                             threads: int = None) -> ResultList:
     """Searches multiple Common Crawl Indexes for URL pattern.
 
     Args:
         url: The URL pattern to search for.
         indexes: List of Common Crawl Indexes to search through.
-        threads: Number of threads to use for faster parallel search on multiple threads.
+        threads: Number of threads to use for faster parallel search on
+        multiple threads.
 
     Returns:
-        List of all results found throughout the specified Common Crawl indexes.
+        List of all results found throughout the specified
+        Common Crawl indexes.
 
     """
 

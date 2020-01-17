@@ -1,30 +1,31 @@
-from comcrawl import IndexClient
 import pandas as pd
+from comcrawl import IndexClient
 
 
-def test_comcrawl_all_indexes(snapshot):
-    ic = IndexClient()
+def test_comcrawl_all_indexes():
+    client = IndexClient()
 
-    assert len(ic.indexes) > 1
+    assert len(client.indexes) > 1
 
 
 def test_comcrawl_single_index(snapshot):
-    ic = IndexClient(["2019-51"])
+    client = IndexClient(["2019-51"])
 
-    assert len(ic.indexes) == 1
+    assert len(client.indexes) == 1
 
-    ic.search("https://index.commoncrawl.org/*")
+    client.search("https://index.commoncrawl.org/*")
 
-    assert len(ic.results) == 3
+    assert len(client.results) == 3
 
     # filter out duplicates with pandas
-    results_df = pd.DataFrame(ic.results)
+    results_df = pd.DataFrame(client.results)
     sorted_results_df = results_df.sort_values(by="timestamp")
-    filtered_results_df = sorted_results_df.drop_duplicates("urlkey", keep="last")
-    ic.results = filtered_results_df.to_dict("records")
+    filtered_results_df = (sorted_results_df
+                           .drop_duplicates("urlkey", keep="last"))
+    client.results = filtered_results_df.to_dict("records")
 
-    assert len(ic.results) == 2
+    assert len(client.results) == 2
 
-    ic.download_pages()
+    client.download_pages()
 
-    snapshot.assert_match(ic.results[1])
+    snapshot.assert_match(client.results[1])
