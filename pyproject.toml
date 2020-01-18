@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "comcrawl"
 version = "0.1.5"
-description = "A python package for easily querying and downloading pages from commoncrawl.org"
+description = "A python utility for downloading Common Crawl data."
 authors = ["Michael Harms <michaelharms95@icloud.com>"]
 license = "MIT"
 readme = "README.md"
