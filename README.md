@@ -115,8 +115,6 @@ results = client.results
 
 ## Code of Conduct
 
-When accessing Common Crawl, please beware these guidelines posted by one of the Common Crawl maintainers.
+When accessing Common Crawl, please beware these guidelines posted by one of the Common Crawl maintainers:
 
 https://groups.google.com/forum/#!msg/common-crawl/3QmQjFA_3y4/vTbhGqIBBQAJ
-
-## History
