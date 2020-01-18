@@ -22,7 +22,7 @@ Each search result contains a link and byte offset to a specific location in the
 
 ### What does _comcrawl_ offer?
 
-_comcrawl_ simplifies this process of searching and downloading from Common Crawl by offering a simple API interface you can use in ypur python program.
+_comcrawl_ simplifies this process of searching and downloading from Common Crawl by offering a simple API interface you can use in your python program.
 
 ## Installation
 
