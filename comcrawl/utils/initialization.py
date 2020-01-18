@@ -1,8 +1,15 @@
+"""Initialization Helpers
+
+This module contains helper functions for
+initializing the Index Client.
+
+"""
+
 import requests
 from ..types import IndexList
 
 
-def _fetch_available_indexes() -> IndexList:
+def fetch_available_indexes() -> IndexList:
     """Fetches the available Common Crawl Indexes to search.
 
     Returns:

@@ -1,9 +1,15 @@
+"""Index Client
+
+This module contains the core object of the package.
+
+"""
+
 import logging
 from ..types import IndexList, ResultList
 from ..utils import (
-    _fetch_available_indexes,
-    _search_multiple_indexes,
-    _download_multiple_results
+    fetch_available_indexes,
+    search_multiple_indexes,
+    download_multiple_results
 )
 
 
@@ -18,12 +24,12 @@ class IndexClient:
         if indexes:
             self.indexes = indexes
         else:
-            self.indexes = _fetch_available_indexes()
+            self.indexes = fetch_available_indexes()
 
         self.results: ResultList = []
 
     def search(self, url: str, threads: int = None) -> None:
-        self.results = _search_multiple_indexes(url, self.indexes, threads)
+        self.results = search_multiple_indexes(url, self.indexes, threads)
 
     def download_pages(self) -> None:
-        self.results = _download_multiple_results(self.results)
+        self.results = download_multiple_results(self.results)

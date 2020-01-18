@@ -1,4 +1,4 @@
-from comcrawl import IndexClient
+from comcrawl.core import IndexClient
 
 
 def test_index_client():
