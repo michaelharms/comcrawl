@@ -9,7 +9,9 @@ from ..utils import (
 
 class IndexClient:
 
-    def __init__(self, indexes: IndexList = None, verbose: bool = False) -> None:
+    def __init__(self,
+                 indexes: IndexList = None,
+                 verbose: bool = False) -> None:
         if verbose:
             logging.basicConfig(level=logging.DEBUG)
 
