@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/michaelharms/comcrawl/branch/master/graph/badge.svg?token=FEw4KEcpRm)](https://codecov.io/gh/michaelharms/comcrawl)
 ![GitHub](https://img.shields.io/github/license/michaelharms/comcrawl)
 
-_comcrawl_ is a python utility for downloading [Common Crawl](https://commoncrawl.org) data.
+_comcrawl_ is a python package for easily querying and downloading pages from [commoncrawl.org](https://commoncrawl.org).
 
 ## Introduction
 
