@@ -3,7 +3,7 @@ from comcrawl import IndexClient
 
 
 def test_comcrawl(snapshot):
-    client = IndexClient(["2019-51"])
+    client = IndexClient(["2019-51"], verbose=True)
     client.search("https://index.commoncrawl.org/*")
 
     assert len(client.results) == 3

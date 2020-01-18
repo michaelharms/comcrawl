@@ -1,3 +1,4 @@
+import logging
 from ..types import IndexList, ResultList
 from ..utils import (
     _fetch_available_indexes,
@@ -8,7 +9,12 @@ from ..utils import (
 
 class IndexClient:
 
-    def __init__(self, indexes: IndexList = None) -> None:
+    def __init__(self,
+                 indexes: IndexList = None,
+                 verbose: bool = False) -> None:
+        if verbose:
+            logging.basicConfig(level=logging.DEBUG)
+
         if indexes:
             self.indexes = indexes
         else:
