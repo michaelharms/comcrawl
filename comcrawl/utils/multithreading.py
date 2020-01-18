@@ -2,8 +2,8 @@ from typing import Callable, List
 from concurrent import futures
 
 
-def make_multithreaded_function(func: Callable,
-                                threads: int) -> Callable:
+def make_multithreaded(func: Callable,
+                       threads: int) -> Callable:
 
     def multithreaded_function(input_list: List, *args) -> List:
         results = []
@@ -18,7 +18,12 @@ def make_multithreaded_function(func: Callable,
             }
 
             for future in futures.as_completed(future_to_input_item):
-                results.extend(future.result())
+                result = future.result()
+
+                if isinstance(result, List):
+                    results.extend(result)
+                else:
+                    results.append(result)
 
         return results
 

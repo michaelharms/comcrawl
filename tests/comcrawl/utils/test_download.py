@@ -1,3 +1,4 @@
+import pandas as pd
 from comcrawl.utils.download import (download_single_result,
                                      download_multiple_results)
 
@@ -18,8 +19,8 @@ KNOWN_RESULT = {
 
 
 def test_download_single_result(snapshot):
-    html = download_single_result(KNOWN_RESULT)
-    snapshot.assert_match(html)
+    result = download_single_result(KNOWN_RESULT)
+    snapshot.assert_match(result["html"])
 
 
 KNOWN_RESULTS = [{'charset': 'UTF-8',
@@ -50,7 +51,18 @@ KNOWN_RESULTS = [{'charset': 'UTF-8',
                   'urlkey': 'org,commoncrawl,index)/'}]
 
 
-def test_download_multiple_results(snapshot):
+def test_download_multiple_results_single_threaded(snapshot):
     results = download_multiple_results(KNOWN_RESULTS)
 
     snapshot.assert_match(results)
+
+
+def test_download_multiple_results_multi_threaded(snapshot):
+    results = download_multiple_results(KNOWN_RESULTS, threads=2)
+
+    # sorting values to counteract the random results order, which is caused
+    # through the randomness in which thread download finished first
+    results_df = pd.DataFrame(results)
+    sorted_results_df = results_df.sort_values(by="timestamp")
+
+    snapshot.assert_match(sorted_results_df.to_dict("records"))

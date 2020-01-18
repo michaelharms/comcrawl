@@ -9,20 +9,20 @@ import io
 import gzip
 import requests
 from ..types import Result, ResultList, HTMLStr
-from .multithreading import make_multithreaded_function
+from .multithreading import make_multithreaded
 
 
 URL_TEMPLATE = "https://commoncrawl.s3.amazonaws.com/{filename}"
 
 
-def download_single_result(result: Result) -> HTMLStr:
+def download_single_result(result: Result) -> Result:
     """Downloads HTML for single search result.
 
     Args:
         result: Common Crawl Index search result from the search function.
 
     Returns:
-        The HTML of the corresponding page as a string.
+        The provided result, extendey by the corresponding HTML String.
 
     """
 
@@ -43,12 +43,12 @@ def download_single_result(result: Result) -> HTMLStr:
     raw_data: bytes = unzipped_file.read()
     data: str = raw_data.decode("utf-8")
 
-    html = ""
+    result["html"] = ""
 
     if len(data) > 0:
-        __, ___, html = data.strip().split("\r\n\r\n", 2)
+        __, ___, result["html"] = data.strip().split("\r\n\r\n", 2)
 
-    return html
+    return result
 
 
 def download_multiple_results(results: ResultList, threads: int = None) -> ResultList:
@@ -59,6 +59,8 @@ def download_multiple_results(results: ResultList, threads: int = None) -> Resul
 
     Args:
         results: List of Common Crawl search results.
+        threads: Number of threads to use for faster parallel downloads on
+            multiple threads.
 
     Returns:
         The provided results list, extended by the corresponding
@@ -70,13 +72,14 @@ def download_multiple_results(results: ResultList, threads: int = None) -> Resul
 
     # multi-threaded download
     if threads:
-        multithreaded_download = make_multithreaded_function(download_single_result, threads)
+        multithreaded_download = make_multithreaded(download_single_result,
+                                                    threads)
         results_with_html = multithreaded_download(results)
 
     # single-threaded download
     else:
         for result in results:
-            result["html"] = download_single_result(result)
-            results_with_html.append(result)
+            result_with_html = download_single_result(result)
+            results_with_html.append(result_with_html)
 
     return results_with_html

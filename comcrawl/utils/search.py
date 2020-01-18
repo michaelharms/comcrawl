@@ -9,7 +9,7 @@ from concurrent import futures
 import json
 import requests
 from ..types import ResultList, IndexList
-from .multithreading import make_multithreaded_function
+from .multithreading import make_multithreaded
 
 URL_TEMPLATE = ("https://index.commoncrawl.org/"
                 "CC-MAIN-{index}-index?url={url}&output=json")
@@ -61,7 +61,8 @@ def search_multiple_indexes(url: str,
 
     # multi-threaded search
     if threads:
-        mulithreaded_search = make_multithreaded_function(search_single_index, threads)
+        mulithreaded_search = make_multithreaded(search_single_index,
+                                                 threads)
         results = mulithreaded_search(indexes, url)
 
     # single-threaded search
