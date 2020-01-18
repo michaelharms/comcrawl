@@ -9,6 +9,7 @@ import io
 import gzip
 import requests
 from ..types import Result, ResultList, HTMLStr
+from .multithreading import make_multithreaded_function
 
 
 URL_TEMPLATE = "https://commoncrawl.s3.amazonaws.com/{filename}"
@@ -50,7 +51,7 @@ def download_single_result(result: Result) -> HTMLStr:
     return html
 
 
-def download_multiple_results(results: ResultList) -> ResultList:
+def download_multiple_results(results: ResultList, threads: int = None) -> ResultList:
     """Downloads search results.
 
     For each Common Crawl search result in the given list the
@@ -67,8 +68,15 @@ def download_multiple_results(results: ResultList) -> ResultList:
 
     results_with_html = []
 
-    for result in results:
-        result["html"] = download_single_result(result)
-        results_with_html.append(result)
+    # multi-threaded download
+    if threads:
+        multithreaded_download = make_multithreaded_function(download_single_result, threads)
+        results_with_html = multithreaded_download(results)
+
+    # single-threaded download
+    else:
+        for result in results:
+            result["html"] = download_single_result(result)
+            results_with_html.append(result)
 
     return results_with_html
