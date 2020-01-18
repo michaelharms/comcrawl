@@ -10,7 +10,7 @@ _comcrawl_ is a python utility for downloading [Common Crawl](https://commoncraw
 
 I was inspired to make _comcrawl_ by reading this [article](https://www.bellingcat.com/resources/2015/08/13/using-python-to-mine-common-crawl/).
 
-I did it for fun and it is intended for use in small to medium projects, because it is not optimized for handling gigabytes or terrabytes of data. You might want to check out [cdx-toolkit](https://pypi.org/project/cdx-toolkit/) or [cdx-index-client](https://github.com/ikreymer/cdx-index-client) in such cases.
+**Note:** I did it for fun and it is intended for use in small to medium projects, because it is not optimized for handling gigabytes or terrabytes of data. You might want to check out [cdx-toolkit](https://pypi.org/project/cdx-toolkit/) or [cdx-index-client](https://github.com/ikreymer/cdx-index-client) in such cases.
 
 ### What is Common Crawl?
 
