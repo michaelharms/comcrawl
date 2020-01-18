@@ -1,3 +1,10 @@
+"""Multithreading Helpers
+
+This module contains utility functions
+to manage multi-threading.
+
+"""
+
 from typing import Callable, List
 from concurrent import futures
 

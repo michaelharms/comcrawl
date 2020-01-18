@@ -75,4 +75,4 @@ class IndexClient:
                 multi-threading only if set.
 
         """
-        self.results = download_multiple_results(self.results)
+        self.results = download_multiple_results(self.results, threads)

@@ -5,7 +5,6 @@ searching through Common Crawl Indexes.
 
 """
 
-from concurrent import futures
 import json
 import requests
 from ..types import ResultList, IndexList

@@ -8,7 +8,7 @@ pages from the Common Crawl S3 Buckets.
 import io
 import gzip
 import requests
-from ..types import Result, ResultList, HTMLStr
+from ..types import Result, ResultList
 from .multithreading import make_multithreaded
 
 
@@ -51,7 +51,8 @@ def download_single_result(result: Result) -> Result:
     return result
 
 
-def download_multiple_results(results: ResultList, threads: int = None) -> ResultList:
+def download_multiple_results(results: ResultList,
+                              threads: int = None) -> ResultList:
     """Downloads search results.
 
     For each Common Crawl search result in the given list the

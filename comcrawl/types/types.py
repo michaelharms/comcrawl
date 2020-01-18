@@ -6,12 +6,9 @@ used throughout the project.
 
 """
 
-from typing import List, Dict, Tuple
+from typing import List, Dict
 
 IndexList = List[str]
 
 Result = Dict
 ResultList = List[Dict]
-
-HTMLStr = str
-HTMLStrList = List[Tuple[str, str]]
