@@ -66,7 +66,7 @@ results = client.results
 
 ### Removing duplicats & Saving
 
-You can easily combine this package with the [pandas]() library, to filter out duplicate results and persist them to disk:
+You can easily combine this package with the [pandas](https://github.com/pandas-dev/pandas) library, to filter out duplicate results and persist them to disk:
 
 ```python
 from comcrawl import IndexClient
