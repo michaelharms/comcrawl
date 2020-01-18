@@ -28,7 +28,7 @@ _comcrawl_ simplifies this process of searching and downloading from Common Craw
 
 _comcrawl_ is available on PyPI.
 
-Install it via pip by running the following command in your terminal:
+Install it via pip by running the following command from your terminal:
 
 ```
 pip install comcrawl
