@@ -60,7 +60,7 @@ def download_multiple_results(results: ResultList) -> ResultList:
         results: List of Common Crawl search results.
 
     Returns:
-        The provided results list, extended by the corresponding 
+        The provided results list, extended by the corresponding
         HTML strings.
 
     """
