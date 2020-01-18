@@ -1,13 +1,20 @@
+"""Download Helpers
+
+This module contains helper functions for downloading
+pages from the Common Crawl S3 Buckets.
+
+"""
+
 import io
 import gzip
 import requests
-from ..types import Result, HTMLStr
+from ..types import Result, ResultList, HTMLStr
 
 
 URL_TEMPLATE = "https://commoncrawl.s3.amazonaws.com/{filename}"
 
 
-def _download_single_result(result: Result) -> HTMLStr:
+def download_single_result(result: Result) -> HTMLStr:
     """Downloads HTML for single search result.
 
     Args:
@@ -41,3 +48,27 @@ def _download_single_result(result: Result) -> HTMLStr:
         __, ___, html = data.strip().split("\r\n\r\n", 2)
 
     return html
+
+
+def download_multiple_results(results: ResultList) -> ResultList:
+    """Downloads search results.
+
+    For each Common Crawl search result in the given list the
+    corresponding HTML page is downloaded.
+
+    Args:
+        results: List of Common Crawl search results.
+
+    Returns:
+        A list of tuples with the result URL as the first and the
+        corresponding HTML as the second value.
+
+    """
+
+    results_with_html = []
+
+    for result in results:
+        result["html"] = download_single_result(result)
+        results_with_html.append(result)
+
+    return results_with_html
