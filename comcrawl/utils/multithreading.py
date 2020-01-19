@@ -34,8 +34,8 @@ def make_multithreaded(func: Callable,
                 parameters needed for the function to be executed.
 
         Returns:
-            List of results after all input list elements were 
-            processed. Input order might not be preserved in 
+            List of results after all input list elements were
+            processed. Input order might not be preserved in
             output list.
 
         """
