@@ -64,11 +64,15 @@ class IndexClient:
         """
         self.results = search_multiple_indexes(url, self.indexes, threads)
 
-    def download_pages(self) -> None:
+    def download(self, threads: int = None) -> None:
         """Download
 
         Downloads the HTML for every result in the
         instances `results` attribute.
 
+        Args:
+            threads: Number of threads to use. Enables
+                multi-threading only if set.
+
         """
-        self.results = download_multiple_results(self.results)
+        self.results = download_multiple_results(self.results, threads)

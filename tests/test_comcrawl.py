@@ -17,6 +17,6 @@ def test_comcrawl(snapshot):
 
     assert len(client.results) == 2
 
-    client.download_pages()
+    client.download()
 
     snapshot.assert_match(client.results[1])

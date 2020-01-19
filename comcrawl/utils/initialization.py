@@ -16,7 +16,6 @@ def fetch_available_indexes() -> IndexList:
         A list containing available indexes and information about them.
 
     """
-
     index_list = (requests
                   .get("https://index.commoncrawl.org/collinfo.json")
                   .json())
