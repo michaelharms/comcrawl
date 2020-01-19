@@ -25,7 +25,6 @@ def search_single_index(index: str, url: str) -> ResultList:
         List of results dictionaries found in specified Index for the URL.
 
     """
-
     results: ResultList = []
 
     url = URL_TEMPLATE.format(index=index, url=url)
@@ -55,7 +54,6 @@ def search_multiple_indexes(url: str,
         Common Crawl indexes.
 
     """
-
     results = []
 
     # multi-threaded search

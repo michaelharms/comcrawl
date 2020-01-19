@@ -25,7 +25,6 @@ def download_single_result(result: Result) -> Result:
         The provided result, extendey by the corresponding HTML String.
 
     """
-
     offset, length = int(result["offset"]), int(result["length"])
 
     offset_end = offset + length - 1
@@ -68,7 +67,6 @@ def download_multiple_results(results: ResultList,
         HTML strings.
 
     """
-
     results_with_html = []
 
     # multi-threaded download
