@@ -77,11 +77,11 @@ import pandas as pd
 client = IndexClient()
 client.search("reddit.com/r/MachineLearning/*")
 
-df = pd.DataFrame(client.results)
-sorted_df = df.sort_values(by="timestamp")
-filtered_df = sorted_df.drop_duplicates("urlkey", keep="last")
+client.results = (pd.DataFrame(client.results)
+                  .sort_values(by="timestamp")
+                  .drop_duplicates("urlkey", keep="last")
+                  .to_dict("records"))
 
-client.results = filtered_df.to_dict("records")
 client.download()
 
 pd.DataFrame(client.results).to_csv("results.csv")
