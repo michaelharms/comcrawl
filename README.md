@@ -38,6 +38,8 @@ pip install comcrawl
 
 ### Basic
 
+The HTML for each page will be available as a string in the 'html' key in each results dictionary after calling the `download` method.
+
 ```python
 from comcrawl import IndexClient
 
@@ -46,7 +48,7 @@ client = IndexClient()
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
 
-results = client.results
+first_page_html = client.results[0]["html"]
 ```
 
 ### Multithreading
@@ -62,8 +64,6 @@ client = IndexClient()
 
 client.search("reddit.com/r/MachineLearning/*", threads=4)
 client.download(threads=4)
-
-results = client.results
 ```
 
 ### Removing duplicats & Saving
@@ -99,8 +99,6 @@ from comcrawl import IndexClient
 client = IndexClient(["2019-51", "2019-47"])
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
-
-results = client.results
 ```
 
 ### Logging HTTP requests
@@ -113,8 +111,6 @@ from comcrawl import IndexClient
 client = IndexClient(verbose=True)
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
-
-results = client.results
 ```
 
 ## Code of Conduct
