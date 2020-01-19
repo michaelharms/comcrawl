@@ -44,7 +44,7 @@ from comcrawl import IndexClient
 client = IndexClient()
 
 client.search("reddit.com/r/MachineLearning/*")
-client.download_pages()
+client.download()
 
 results = client.results
 ```
@@ -59,7 +59,7 @@ from comcrawl import IndexClient
 client = IndexClient()
 
 client.search("reddit.com/r/MachineLearning/*", threads=4)
-client.download_pages()
+client.download()
 
 results = client.results
 ```
@@ -80,7 +80,7 @@ sorted_df = df.sort_values(by="timestamp")
 filtered_df = sorted_df.drop_duplicates("urlkey", keep="last")
 
 client.results = filtered_df.to_dict("records")
-client.download_pages()
+client.download()
 
 pd.DataFrame(client.results).to_csv("results.csv")
 ```
@@ -94,7 +94,7 @@ from comcrawl import IndexClient
 
 client = IndexClient(["2019-51", "2019-47"])
 client.search("reddit.com/r/MachineLearning/*")
-client.download_pages()
+client.download()
 
 results = client.results
 ```
@@ -108,7 +108,7 @@ from comcrawl import IndexClient
 
 client = IndexClient(verbose=True)
 client.search("reddit.com/r/MachineLearning/*")
-client.download_pages()
+client.download()
 
 results = client.results
 ```
