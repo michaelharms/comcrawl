@@ -10,7 +10,7 @@ _comcrawl_ is a python package for easily querying and downloading pages from [c
 
 I was inspired to make _comcrawl_ by reading this [article](https://www.bellingcat.com/resources/2015/08/13/using-python-to-mine-common-crawl/).
 
-**Note:** I made this for personal projects and for fun. This this package is intended for use in small to medium projects, because it is not optimized for handling gigabytes or terrabytes of data. You might want to check out [cdx-toolkit](https://pypi.org/project/cdx-toolkit/) or [cdx-index-client](https://github.com/ikreymer/cdx-index-client) in such cases.
+**Note:** I made this for personal projects and for fun. Thus this package is intended for use in small to medium projects, because it is not optimized for handling gigabytes or terrabytes of data. You might want to check out [cdx-toolkit](https://pypi.org/project/cdx-toolkit/) or [cdx-index-client](https://github.com/ikreymer/cdx-index-client) in such cases.
 
 ### What is Common Crawl?
 
@@ -38,6 +38,8 @@ pip install comcrawl
 
 ### Basic
 
+The HTML for each page will be available as a string in the 'html' key in each results dictionary after calling the `download` method.
+
 ```python
 from comcrawl import IndexClient
 
@@ -46,12 +48,14 @@ client = IndexClient()
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
 
-results = client.results
+first_page_html = client.results[0]["html"]
 ```
 
 ### Multithreading
 
-You can leverage multithreading while searching by specifying the number of threads you want to use.
+You can leverage multithreading while searching or downloading by specifying the number of threads you want to use.
+
+Please keep in mind to not overdo this, so you don't put too much stress on the Common Crawl servers (have a look at [Code of Conduct](#code-of-conduct)).
 
 ```python
 from comcrawl import IndexClient
@@ -59,9 +63,7 @@ from comcrawl import IndexClient
 client = IndexClient()
 
 client.search("reddit.com/r/MachineLearning/*", threads=4)
-client.download()
-
-results = client.results
+client.download(threads=4)
 ```
 
 ### Removing duplicats & Saving
@@ -85,6 +87,8 @@ client.download()
 pd.DataFrame(client.results).to_csv("results.csv")
 ```
 
+The urlkey alone might not be sufficient here, so you might want to write a function to compute a custom id from the results' properties for the removal of duplicates.
+
 ### Searching subsets of Indexes
 
 By default, when instantiated, the `IndexClient` fetches a list of currently available Common Crawl indexes to search. You can also restrict the search to certain Common Crawl Indexes, by specifying them as a list.
@@ -95,8 +99,6 @@ from comcrawl import IndexClient
 client = IndexClient(["2019-51", "2019-47"])
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
-
-results = client.results
 ```
 
 ### Logging HTTP requests
@@ -109,8 +111,6 @@ from comcrawl import IndexClient
 client = IndexClient(verbose=True)
 client.search("reddit.com/r/MachineLearning/*")
 client.download()
-
-results = client.results
 ```
 
 ## Code of Conduct
