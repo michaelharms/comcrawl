@@ -25,7 +25,8 @@ KNOWN_RESULT_NO_HTML = {
     'mime-detected': 'text/html',
     'offset': '27349613',
     'length': '1075',
-    'filename': 'crawl-data/CC-MAIN-2019-51/segments/1575540530452.95/crawldiagnostics/CC-MAIN-20191211074417-20191211102417-00094.warc.gz',
+    'filename': ('crawl-data/CC-MAIN-2019-51/segments/1575540530452.95/'
+                 'crawldiagnostics/CC-MAIN-20191211074417-20191211102417-00094.warc.gz'),
     'url': 'https://de.wikipedia.org/wiki/%20Vaterl%C3%A4ndische_Front',
     'status': '301',
     'mime': 'text/html'}
