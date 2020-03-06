@@ -1,5 +1,5 @@
 # pylint: disable=C0103
-"""Custom Types
+"""Custom Types.
 
 This module contains custom type definitions
 used throughout the project.

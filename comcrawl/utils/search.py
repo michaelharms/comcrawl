@@ -1,4 +1,4 @@
-"""Search Helpers
+"""Search Helpers.
 
 This module contains helper functions for
 searching through Common Crawl Indexes.

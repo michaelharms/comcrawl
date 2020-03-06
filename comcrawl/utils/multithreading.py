@@ -1,4 +1,4 @@
-"""Multithreading Helpers
+"""Multithreading Helpers.
 
 This module contains utility functions
 to manage multi-threading.
@@ -11,7 +11,7 @@ from concurrent import futures
 
 def make_multithreaded(func: Callable,
                        threads: int) -> Callable:
-    """Creates a multithreaded version of a function
+    """Creates a multithreaded version of a function.
 
     Args:
         func: Function that is meant to be executed on
@@ -25,7 +25,7 @@ def make_multithreaded(func: Callable,
     """
 
     def multithreaded_function(input_list: List, *args) -> List:
-        """Executes function on input list using multiple threads
+        """Executes function on input list using multiple threads.
 
         Args:
             input_list: The list of objects a function should be
