@@ -17,10 +17,29 @@ KNOWN_RESULT = {
     'CC-MAIN-20191207160050-20191207184050-00394.warc.gz',
     'status': '200'}
 
+KNOWN_RESULT_NO_HTML = {
+    'urlkey': 'org,wikipedia,de)/wiki/%20vaterl%c3%a4ndische_front',
+    'timestamp': '20191211090655',
+    'digest': '3I42H3S6NNFQ2MSVX7XZKYAYSCX5QBYJ',
+    'redirect': 'https://de.wikipedia.org/wiki/Vaterl%C3%A4ndische_Front',
+    'mime-detected': 'text/html',
+    'offset': '27349613',
+    'length': '1075',
+    'filename': ('crawl-data/CC-MAIN-2019-51/segments/1575540530452.95/'
+                 'crawldiagnostics/CC-MAIN-20191211074417-20191211102417-00094.warc.gz'),
+    'url': 'https://de.wikipedia.org/wiki/%20Vaterl%C3%A4ndische_Front',
+    'status': '301',
+    'mime': 'text/html'}
+
 
 def test_download_single_result(snapshot):
     result = download_single_result(KNOWN_RESULT)
     snapshot.assert_match(result["html"])
+
+
+def test_download_single_result_without_html():
+    result = download_single_result(KNOWN_RESULT_NO_HTML)
+    assert result["html"] == ""
 
 
 KNOWN_RESULTS = [{'charset': 'UTF-8',

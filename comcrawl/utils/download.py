@@ -45,7 +45,8 @@ def download_single_result(result: Result) -> Result:
     result["html"] = ""
 
     if len(data) > 0:
-        __, ___, result["html"] = data.strip().split("\r\n\r\n", 2)
+        data_parts = data.strip().split("\r\n\r\n", 2)
+        result["html"] = data_parts[2] if len(data_parts) == 3 else ""
 
     return result
 
