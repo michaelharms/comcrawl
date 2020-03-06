@@ -66,7 +66,7 @@ client.search("reddit.com/r/MachineLearning/*", threads=4)
 client.download(threads=4)
 ```
 
-### Removing duplicats & Saving
+### Removing duplicates & Saving
 
 You can easily combine this package with the [pandas](https://github.com/pandas-dev/pandas) library, to filter out duplicate results and persist them to disk:
 
