@@ -1,4 +1,4 @@
-"""Index Client
+"""Index Client.
 
 This module contains the core object of the package.
 
@@ -14,7 +14,7 @@ from ..utils import (
 
 
 class IndexClient:
-    """Common Crawl Index Client
+    """Common Crawl Index Client.
 
     After instantiating this class, it can be used to
     query Common Crawl indexes and download pages from the
@@ -51,7 +51,7 @@ class IndexClient:
         self.results: ResultList = []
 
     def search(self, url: str, threads: int = None) -> None:
-        """Search
+        """Search.
 
         Searches the Common Crawl indexes this class was
         intialized with.
@@ -65,7 +65,7 @@ class IndexClient:
         self.results = search_multiple_indexes(url, self.indexes, threads)
 
     def download(self, threads: int = None) -> None:
-        """Download
+        """Download.
 
         Downloads the HTML for every result in the
         instances `results` attribute.

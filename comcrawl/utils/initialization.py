@@ -1,4 +1,4 @@
-"""Initialization Helpers
+"""Initialization Helpers.
 
 This module contains helper functions for
 initializing the Index Client.

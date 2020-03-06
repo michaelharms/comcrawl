@@ -1,4 +1,4 @@
-"""Download Helpers
+"""Download Helpers.
 
 This module contains helper functions for downloading
 pages from the Common Crawl S3 Buckets.

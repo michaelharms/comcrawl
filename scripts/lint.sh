@@ -13,6 +13,9 @@ poetry run pylint --ignore=snapshots comcrawl tests || FAILURE=true
 echo "pycodestyle"
 poetry run pycodestyle --exclude=snapshots comcrawl tests || FAILURE=true
 
+echo "pydocstyle"
+poetry run pydocstyle comcrawl || FAILURE=true
+
 echo "mypy"
 poetry run mypy comcrawl tests || FAILURE=true
 
