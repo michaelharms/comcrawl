@@ -7,6 +7,6 @@ package, providing all of the functionality.
 """
 
 
-__version__ = "1.0.1"
+__version__ = "1.0.2a0"
 
 from .core import IndexClient
