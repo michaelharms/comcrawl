@@ -31,6 +31,22 @@ KNOWN_RESULT_NO_HTML = {
     'status': '301',
     'mime': 'text/html'}
 
+KNOWN_RESULT_NO_HTML_ERROR_HANDLING = {
+    'urlkey': ('com,publicstorage)/blog/seasonal/-/media/website/'
+               'blog/photos/2014/01/red-fabric-christmas-ornament-storage-box.ashx'),
+    'timestamp': '20200531041432',
+    'digest': '4R4CS4CNOPMA7H6ITWLHTTCSIXQMMYZ3',
+    'redirect': '',
+    'mime-detected': 'image/jpeg',
+    'offset': '886432941',
+    'length': '37721',
+    'filename': ('crawl-data/CC-MAIN-2020-24/segments/1590347410745.37/'
+                 'warc/CC-MAIN-20200531023023-20200531053023-00208.warc.gz'),
+    'url': ('https://www.publicstorage.com/blog/seasonal/-/media/'
+            'Website/Blog/Photos/2014/01/red-fabric-christmas-ornament-storage-box.ashx'),
+    'status': '200',
+    'mime': 'image/jpeg'}
+
 
 def test_download_single_result(snapshot):
     result = download_single_result(KNOWN_RESULT)
@@ -39,6 +55,11 @@ def test_download_single_result(snapshot):
 
 def test_download_single_result_without_html():
     result = download_single_result(KNOWN_RESULT_NO_HTML)
+    assert result["html"] == ""
+
+
+def test_download_single_result_without_html_error_handling():
+    result = download_single_result(KNOWN_RESULT_NO_HTML_ERROR_HANDLING)
     assert result["html"] == ""
 
 
