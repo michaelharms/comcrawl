@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "comcrawl"
-version = "1.0.1"
+version = "1.0.2"
 description = "A python utility for downloading Common Crawl data."
 authors = ["Michael Harms <michaelharms95@icloud.com>"]
 license = "MIT"

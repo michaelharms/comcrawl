@@ -44,7 +44,7 @@ def download_single_result(result: Result) -> Result:
         data: str = raw_data.decode("utf-8")
     except UnicodeDecodeError:
         print(f"Warning: Could not extract file downloaded from {url}")
-        data = ''
+        data = ""
 
     result["html"] = ""
 
