@@ -5,6 +5,7 @@ This module contains the core object of the package.
 """
 
 import logging
+from typing import Optional
 from ..types import IndexList, ResultList
 from ..utils import (
     fetch_available_indexes,
@@ -50,7 +51,7 @@ class IndexClient:
 
         self.results: ResultList = []
 
-    def search(self, url: str, threads: int = None) -> None:
+    def search(self, url: str, threads: int = Optional[None], filter: Optional[str]=None,  match_type: Optional[str]=None) -> None:
         """Search.
 
         Searches the Common Crawl indexes this class was
@@ -62,7 +63,7 @@ class IndexClient:
                 multi-threading only if set.
 
         """
-        self.results = search_multiple_indexes(url, self.indexes, threads)
+        self.results = search_multiple_indexes(url, self.indexes, threads, filter, match_type)
 
     def download(self, threads: int = None) -> None:
         """Download.
