@@ -14,7 +14,7 @@ URL_TEMPLATE = ("https://index.commoncrawl.org/"
                 "CC-MAIN-{index}-index?url={url}&output=json")
 
 
-def search_single_index(index: str, url: str) -> ResultList:
+def search_single_index(index: str, url: str, filter: str = None, match_type: str = None) -> ResultList:
     """Searches specific Common Crawl Index for given URL pattern.
 
     Args:
@@ -28,6 +28,10 @@ def search_single_index(index: str, url: str) -> ResultList:
     results: ResultList = []
 
     url = URL_TEMPLATE.format(index=index, url=url)
+    if filter:
+        url += f"&filter={filter}"
+    if match_type:
+        url += f"&matchType={match_type}"
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -40,7 +44,7 @@ def search_single_index(index: str, url: str) -> ResultList:
 
 def search_multiple_indexes(url: str,
                             indexes: IndexList,
-                            threads: int = None) -> ResultList:
+                            threads: int = None, filter: str = None, match_type: str = None) -> ResultList:
     """Searches multiple Common Crawl Indexes for URL pattern.
 
     Args:
