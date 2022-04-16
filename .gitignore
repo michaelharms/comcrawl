@@ -126,3 +126,6 @@ dmypy.json
 
 # VS Code Settings
 .vscode
+
+# IntelliJ Settings
+.idea
